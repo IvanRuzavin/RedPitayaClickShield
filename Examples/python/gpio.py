@@ -5,7 +5,6 @@ import rp
 
 fpga = overlay()
 rp.rp_Init()
-rp.rp_Release()
 
 # Set all DIO_P pins to be outputs
 rp.rp_GPIOpSetDirection(0b00000110)
@@ -25,3 +24,5 @@ for i in range(10):
     rp.rp_GPIOpSetState(0b00000000)
     rp.rp_GPIOnSetState(0b00000000)
     time.sleep(1)
+
+rp.rp_Release()
