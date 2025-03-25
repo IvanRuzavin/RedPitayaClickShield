@@ -2,10 +2,10 @@ import time
 from rp_overlay import overlay
 import rp
 
-rp.rp_Release()
 
 fpga = overlay()
 rp.rp_Init()
+rp.rp_Release()
 
 # Set all DIO_P pins to be outputs
 rp.rp_GPIOpSetDirection(0b00000110)
