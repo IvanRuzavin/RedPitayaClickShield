@@ -2,6 +2,8 @@ import time
 from rp_overlay import overlay
 import rp
 
+rp.rp_Release()
+
 fpga = overlay()
 rp.rp_Init()
 
@@ -23,5 +25,3 @@ for i in range(10):
     rp.rp_GPIOpSetState(0b00000000)
     rp.rp_GPIOnSetState(0b00000000)
     time.sleep(1)
-
-rp.rp_Release()
