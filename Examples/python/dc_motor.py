@@ -6,29 +6,16 @@ import rp
 fpga = overlay()
 rp.rp_Init()
 
-AN1 = rp.RP_AIN0
-AN2 = rp.RP_AIN1
-RST1 = rp.RP_DIO2_N
-RST2 = rp.RP_DIO4_N
-PWM1 = rp.RP_DIO1_P
-PWM2 = rp.RP_DIO3_P
-INT1 = rp.RP_DIO2_P
-INT2 = rp.RP_DIO4_P
-UART_SW = rp.RP_DIO5_N
-SPI_CS1 = rp.RP_DIO1_N
-SPI_CS2 = rp.RP_DIO3_N
+# CS = rp.rp_GPIOnSetDirection(0b00001000)
+# RST = rp.rp_GPIOnSetDirection(0b00010000)
+# INT = rp.rp_GPIOpSetDirection(0b00010000)
 
-# Set the direction of mikrobus pins
-INPUT1 = SPI_CS1
-INPUT2 = RST1
-SLEEP = INT1
+# PWM = rp.rp_GPIOpSetDirection(0b00001000)
 
-# rp.rp_DpinSetDirection(PWM1, rp.RP_OUT)
-# rp.rp_DpinSetDirection(INPUT1, rp.RP_OUT)
-# rp.rp_DpinSetDirection(INPUT2, rp.RP_OUT)
-# rp.rp_DpinSetDirection(SLEEP, rp.RP_OUT)
-rp.rp_GPIOpSetDirection(0b00000110)
-rp.rp_GPIOnSetDirection(0b00000110)
+# Set RST and CS pins as outputs
+rp.rp_GPIOnSetDirection(0b00011000)
+# Set PWM and INT pins as outputs
+rp.rp_GPIOpSetDirection(0b00011000)
 
 def pwm(pin, duty_cycle, num_seconds):
     period_us = 875
@@ -39,7 +26,7 @@ def pwm(pin, duty_cycle, num_seconds):
     print(f"Current state: {rp.rp_GPIOpGetState()[1]:>08b}")
     pwm_cleared_state = current_state & 0b11111101
     print(f"Cleared state: {pwm_cleared_state:>08b}")
-    pwm_set_state = pwm_cleared_state | 0b00000010
+    pwm_set_state = pwm_cleared_state | 0b00001000
     print(f"Set state: {pwm_set_state:>08b}")
 
     while True:
@@ -55,29 +42,29 @@ def pwm(pin, duty_cycle, num_seconds):
 
 def set_motor_mode(motor_mode):
     if motor_mode == "MODE_CCW":
-        rp.rp_GPIOpSetState(0b00001100)
-        rp.rp_GPIOnSetState(0b00001100)
-        # rp.rp_DpinSetState(INPUT1, rp.RP_LOW)
-        # rp.rp_DpinSetState(INPUT2, rp.RP_HIGH)
-        # rp.rp_DpinSetState(SLEEP, rp.RP_HIGH)
+        # rp.rp_DpinSetState(CS, rp.RP_LOW)
+        # rp.rp_DpinSetState(RST, rp.RP_HIGH)
+        rp.rp_GPIOnSetState(0b00010000)
+        # rp.rp_DpinSetState(INT, rp.RP_HIGH)
+        rp.rp_GPIOpSetState(0b00010000)
     elif motor_mode == "MODE_CW":
-        rp.rp_GPIOpSetState(0b00001001)
-        rp.rp_GPIOnSetState(0b00001001)
-        # rp.rp_DpinSetState(INPUT1, rp.RP_HIGH)
-        # rp.rp_DpinSetState(INPUT2, rp.RP_LOW)
-        # rp.rp_DpinSetState(SLEEP, rp.RP_HIGH)
-    elif motor_mode == "MODE_STOP":
-        rp.rp_GPIOpSetState(0b00001000)
+        # rp.rp_DpinSetState(CS, rp.RP_HIGH)
+        # rp.rp_DpinSetState(RST, rp.RP_LOW)
         rp.rp_GPIOnSetState(0b00001000)
-        # rp.rp_DpinSetState(INPUT1, rp.RP_LOW)
-        # rp.rp_DpinSetState(INPUT2, rp.RP_LOW)
-        # rp.rp_DpinSetState(SLEEP, rp.RP_HIGH)
-    elif motor_mode == "MODE_STANDBY":
-        rp.rp_GPIOpSetState(0b00000000)
+        # rp.rp_DpinSetState(INT, rp.RP_HIGH)
+        rp.rp_GPIOpSetState(0b00010000)
+    elif motor_mode == "MODE_STOP":
+        # rp.rp_DpinSetState(CS, rp.RP_LOW)
+        # rp.rp_DpinSetState(RST, rp.RP_LOW)
         rp.rp_GPIOnSetState(0b00000000)
-        # rp.rp_DpinSetState(INPUT1, rp.RP_LOW)
-        # rp.rp_DpinSetState(INPUT2, rp.RP_LOW)
-        # rp.rp_DpinSetState(SLEEP, rp.RP_LOW)
+        # rp.rp_DpinSetState(INT, rp.RP_HIGH)
+        rp.rp_GPIOpSetState(0b00010000)
+    elif motor_mode == "MODE_STANDBY":
+        # rp.rp_DpinSetState(CS, rp.RP_LOW)
+        # rp.rp_DpinSetState(RST, rp.RP_LOW)
+        rp.rp_GPIOnSetState(0b00000000)
+        # rp.rp_DpinSetState(INT, rp.RP_LOW)
+        rp.rp_GPIOpSetState(0b00000000)
     else:
         # Handle the default case
         pass
