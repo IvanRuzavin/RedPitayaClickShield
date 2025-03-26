@@ -17,7 +17,7 @@ rp.rp_GPIOnSetDirection(0b00011000)
 # Set PWM and INT pins as outputs
 rp.rp_GPIOpSetDirection(0b00011000)
 
-def pwm(pin, duty_cycle, num_seconds):
+def pwm(duty_cycle, num_seconds):
     period_us = 875
     pulse_us = int((duty_cycle * period_us) / 100)
     num_periods = 0
@@ -99,23 +99,23 @@ def pwm_sweep(sweep_time, up_or_down):
             # delay for remaining period
             time.sleep((period_us - pulse_us) / 1000000)
 
-    elif up_or_down == "down":
-        # The 0.15 is because the motor starts spinning at 15%
-        for i in range(num_steps, int(0.15 * num_steps) - 1, -1):
-            duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
-            pulse_us = (duty_cycle * period_us) / 100
+    # elif up_or_down == "down":
+    #     # The 0.15 is because the motor starts spinning at 15%
+    #     for i in range(num_steps, int(0.15 * num_steps) - 1, -1):
+    #         duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
+    #         pulse_us = (duty_cycle * period_us) / 100
 
-            # set pin state high
-            rp.rp_DpinSetState(pin, rp.RP_HIGH)
+    #         # set pin state high
+    #         rp.rp_DpinSetState(pin, rp.RP_HIGH)
 
-            # delay for pulse duration
-            time.sleep(pulse_us / 1000000)
+    #         # delay for pulse duration
+    #         time.sleep(pulse_us / 1000000)
 
-            # set pin state low
-            rp.rp_DpinSetState(pin, rp.RP_LOW)
+    #         # set pin state low
+    #         rp.rp_DpinSetState(pin, rp.RP_LOW)
 
-            # delay for remaining period
-            time.sleep((period_us - pulse_us) / 1000000)
+    #         # delay for remaining period
+    #         time.sleep((period_us - pulse_us) / 1000000)
 
 #sweep up or down to lower the current spike
 set_motor_mode("MODE_CW")
