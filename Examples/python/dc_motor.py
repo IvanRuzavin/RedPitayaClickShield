@@ -36,7 +36,7 @@ def pwm(duty_cycle, num_seconds):
         rp.rp_GPIOpSetState(pwm_set_state)
         time.sleep(pulse_us / 1000000)
         # rp.rp_DpinSetState(pin, rp.RP_LOW)
-        rp.rp_GPIOSetState(pwm_cleared_state)
+        rp.rp_GPIOpSetState(pwm_cleared_state)
         time.sleep((period_us - pulse_us) / 1000000)
         num_periods += 1
 
