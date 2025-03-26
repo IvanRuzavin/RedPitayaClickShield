@@ -77,7 +77,7 @@ def pwm_sweep(sweep_time, up_or_down):
     print(f"Current state: {rp.rp_GPIOpGetState()[1]:>08b}")
     pwm_cleared_state = current_state & 0b11111101
     print(f"Cleared state: {pwm_cleared_state:>08b}")
-    pwm_set_state = pwm_cleared_state | 0b00000010
+    pwm_set_state = pwm_cleared_state | 0b00001000
     print(f"Set state: {pwm_set_state:>08b}")
 
     if up_or_down == "up":
