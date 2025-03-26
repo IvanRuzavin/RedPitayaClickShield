@@ -120,29 +120,29 @@ def pwm_sweep(sweep_time, up_or_down):
             time.sleep((period_us - pulse_us) / 1000000)
 
 #sweep up or down to lower the current spike
-set_motor_mode("MODE_CW")
-pwm_sweep(50, "up")
+# set_motor_mode("MODE_CW")
+# pwm_sweep(10, "up")
 
 while True:
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(50, "up")
+    pwm_sweep(10, "up")
 
     # Set motor mode to stop
     set_motor_mode("MODE_STOP")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(50, "down")
+    pwm_sweep(10, "down")
 
     # Set motor mode to clockwise
     set_motor_mode("MODE_CW")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(50, "up")
+    pwm_sweep(10, "up")
 
     # Set motor mode to standby
     set_motor_mode("MODE_STANDBY")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(50, "down")
+    pwm_sweep(10, "down")
 
 # Release resources
 rp.rp_Release()
