@@ -128,21 +128,23 @@ while True:
     set_motor_mode("MODE_CCW")
     # Run motor at 50% duty cycle for 3 seconds
     pwm_sweep(10, "up")
+    pwm_sweep(10, "down")
 
     # Set motor mode to stop
-    set_motor_mode("MODE_STOP")
+    # set_motor_mode("MODE_STOP")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(10, "down")
+    # pwm_sweep(10, "down")
 
     # Set motor mode to clockwise
     set_motor_mode("MODE_CW")
     # Run motor at 50% duty cycle for 3 seconds
     pwm_sweep(10, "up")
+    pwm_sweep(10, "down")
 
     # Set motor mode to standby
-    set_motor_mode("MODE_STANDBY")
+    # set_motor_mode("MODE_STANDBY")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm_sweep(10, "down")
+    # pwm_sweep(10, "down")
 
 # Release resources
 rp.rp_Release()
