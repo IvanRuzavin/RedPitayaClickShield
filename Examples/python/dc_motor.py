@@ -69,7 +69,7 @@ def set_motor_mode(motor_mode):
         # Handle the default case
         pass
 
-def pwm_sweep(pin, sweep_time, up_or_down):
+def pwm_sweep(sweep_time, up_or_down):
     period_us = 875
     num_steps = int(sweep_time * 1000)  # Convert sweep time to milliseconds
 
@@ -119,28 +119,28 @@ def pwm_sweep(pin, sweep_time, up_or_down):
 
 #sweep up or down to lower the current spike
 set_motor_mode("MODE_CW")
-pwm_sweep(PWM1, 10, "up")
+pwm_sweep(10, "up")
 
 while True:
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm(PWM1, 50, 3)
+    pwm(50, 3)
 
     # Set motor mode to stop
     set_motor_mode("MODE_STOP")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm(PWM1, 50, 3)
+    pwm(50, 3)
 
     # Set motor mode to clockwise
     set_motor_mode("MODE_CW")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm(PWM1, 50, 3)
+    pwm(50, 3)
 
     # Set motor mode to standby
     set_motor_mode("MODE_STANDBY")
     # Run motor at 50% duty cycle for 3 seconds
-    pwm(PWM1, 50, 3)
+    pwm(50, 3)
 
 # Release resources
 rp.rp_Release()
