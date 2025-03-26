@@ -7,16 +7,20 @@ fpga = overlay()
 rp.rp_Init()
 
 # Pin definitions
+# CS - OUT (EN pin)
 ## CS = rp.rp_GPIOnSetDirection(0b00001000)
+# RST - OUT (DIR pin)
 ## RST = rp.rp_GPIOnSetDirection(0b00010000)
-## INT = rp.rp_GPIOpSetDirection(0b00010000)
+# INT - IN
+## INT = rp.rp_GPIOpSetDirection(0b00000000)
 
+# PWM - OUT
 ## PWM = rp.rp_GPIOpSetDirection(0b00001000)
 
 # Set RST and CS pins as outputs
 rp.rp_GPIOnSetDirection(0b00011000)
-# Set PWM and INT pins as outputs
-rp.rp_GPIOpSetDirection(0b00011000)
+# Set PWM pin as output and INT pin as input
+rp.rp_GPIOpSetDirection(0b00001000)
 
 def set_motor_mode(motor_mode):
     # Counter ClockWise direction
@@ -89,6 +93,7 @@ def pwm_sweep(sweep_time, up_or_down):
             time.sleep((period_us - pulse_us) / 1000000)
 
 while True:
+
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
     # Increase motor speed from 15 to 100% for 10 seconds
