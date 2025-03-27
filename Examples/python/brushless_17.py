@@ -77,7 +77,6 @@ def pwm_sweep(sweep_time, up_or_down):
             time.sleep((period_us - pulse_us) / 1000000)
 
 while True:
-    print(rp.__file__)
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
     # Increase motor speed from 40 to 100% for 10 seconds
