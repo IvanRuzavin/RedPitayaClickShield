@@ -53,7 +53,7 @@ def pwm_sweep(sweep_time, up_or_down):
 
     current_state = rp.rp_GPIOpGetState()[1]
     print(f"Current state: {rp.rp_GPIOpGetState()[1]:>08b}")
-    pwm_cleared_state = current_state & 0b11111101
+    pwm_cleared_state = current_state & 0b11110111
     print(f"Cleared state: {pwm_cleared_state:>08b}")
     pwm_set_state = pwm_cleared_state | 0b00001000
     print(f"Set state: {pwm_set_state:>08b}")
@@ -92,14 +92,14 @@ def pwm_sweep(sweep_time, up_or_down):
 
 while True:
     # Set motor mode to counter-clockwise
-    set_motor_mode("MODE_CCW")
+    set_motor_mode("MODE_CW")
     # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
     # Decrease motor speed from 100 to 40% for 10 seconds
     pwm_sweep(10, "down")
 
     # Set motor mode to clockwise
-    set_motor_mode("MODE_CW")
+    set_motor_mode("MODE_CCW")
     # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
     # Decrease motor speed from 100 to 40% for 10 seconds
