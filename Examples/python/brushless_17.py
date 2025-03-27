@@ -22,17 +22,17 @@ rp.rp_GPIOpSetDirection(0b00011000)
 
 def set_motor_mode(motor_mode):
     # Counter ClockWise direction
-    if motor_mode == "MODE_CW":
-        # Set CS to HIGH and RST to HIGH
-        rp.rp_GPIOnSetState(0b00011000)
+    if motor_mode == "MODE_CCW":
+        # Set CS to LOW and RST to HIGH
+        rp.rp_GPIOnSetState(0b00010000)
         # Set INT to HIGH
-        # rp.rp_GPIOpSetState(0b00010000)
+        rp.rp_GPIOpSetState(0b00010000)
     # ClockWise direction
-    elif motor_mode == "MODE_CCW":
+    elif motor_mode == "MODE_CW":
         # Set CS to HIGH and RST to LOW
         rp.rp_GPIOnSetState(0b00001000)
         # Set INT to HIGH
-        # rp.rp_GPIOpSetState(0b00010000)
+        rp.rp_GPIOpSetState(0b00010000)
     elif motor_mode == "MODE_STOP":
         # Set CS to LOW and RST to LOW
         rp.rp_GPIOnSetState(0b00000000)
