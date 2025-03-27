@@ -3,6 +3,7 @@ from rp_overlay import overlay
 import rp
 
 ##### IMPORTANT NOTE - AN PIN ON MIKROBUS SHOULD BE SET TO HIGH
+##### TO RELEASE BRAKES
 
 # Initialize the FPGA overlay
 fpga = overlay()
@@ -38,12 +39,10 @@ def pwm_sweep(sweep_time, up_or_down):
     period_us = 875
     num_steps = int(sweep_time * 1000)  # Convert sweep time to milliseconds
 
+    # Define states for enabling/disabling PWM pin signal
     current_state = rp.rp_GPIOpGetState()[1]
-    print(f"Current state: {rp.rp_GPIOpGetState()[1]:>08b}")
     pwm_cleared_state = current_state & 0b11110111
-    print(f"Cleared state: {pwm_cleared_state:>08b}")
     pwm_set_state = pwm_cleared_state | 0b00001000
-    print(f"Set state: {pwm_set_state:>08b}")
 
     if up_or_down == "up":
         # The 0.4 is because the motor starts spinning at 40%
