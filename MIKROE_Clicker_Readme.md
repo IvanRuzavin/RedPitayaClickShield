@@ -17,3 +17,4 @@
 - Run `git clone https://github.com/IvanRuzavin/RedPitayaClickShield`
 - Run `chmod +x RedPitayaClickShield/initialize_startup.sh`
 - Run `./RedPitayaClickShield/initialize_startup.sh`
+    - This will reboot your RedPitaya and after it is ON again you will have brushless 17 Click running in the background every 30 seconds
