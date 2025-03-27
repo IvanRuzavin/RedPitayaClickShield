@@ -22,17 +22,17 @@ rp.rp_GPIOpSetDirection(0b00011000)
 
 def set_motor_mode(motor_mode):
     # Counter ClockWise direction
-    if motor_mode == "MODE_CCW":
-        # Set CS to LOW and RST to HIGH
-        rp.rp_GPIOnSetState(0b00010000)
+    if motor_mode == "MODE_CW":
+        # Set CS to HIGH and RST to HIGH
+        rp.rp_GPIOnSetState(0b00011000)
         # Set INT to HIGH
-        rp.rp_GPIOpSetState(0b00010000)
+        # rp.rp_GPIOpSetState(0b00010000)
     # ClockWise direction
-    elif motor_mode == "MODE_CW":
+    elif motor_mode == "MODE_CCW":
         # Set CS to HIGH and RST to LOW
         rp.rp_GPIOnSetState(0b00001000)
         # Set INT to HIGH
-        rp.rp_GPIOpSetState(0b00010000)
+        # rp.rp_GPIOpSetState(0b00010000)
     elif motor_mode == "MODE_STOP":
         # Set CS to LOW and RST to LOW
         rp.rp_GPIOnSetState(0b00000000)
@@ -93,16 +93,16 @@ def pwm_sweep(sweep_time, up_or_down):
 while True:
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
-    # Increase motor speed from 15 to 100% for 10 seconds
+    # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
-    # Decrease motor speed from 100 to 15% for 10 seconds
+    # Decrease motor speed from 100 to 40% for 10 seconds
     pwm_sweep(10, "down")
 
     # Set motor mode to clockwise
     set_motor_mode("MODE_CW")
-    # Increase motor speed from 15 to 100% for 10 seconds
+    # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
-    # Decrease motor speed from 100 to 15% for 10 seconds
+    # Decrease motor speed from 100 to 40% for 10 seconds
     pwm_sweep(10, "down")
 
 # Release resources
