@@ -2,25 +2,23 @@ import time
 from rp_overlay import overlay
 import rp
 
+##### IMPORTANT NOTE - AN PIN ON MIKROBUS SHOULD BE SET TO HIGH
+
 # Initialize the FPGA overlay
 fpga = overlay()
 rp.rp_Init()
 
 # Pin definitions
-# CS - OUT (EN pin)
 ## CS = rp.rp_GPIOnSetDirection(0b00001000)
-# RST - OUT (DIR pin)
 ## RST = rp.rp_GPIOnSetDirection(0b00010000)
-# INT - IN
-## INT = rp.rp_GPIOpSetDirection(0b00000000)
+## INT = rp.rp_GPIOpSetDirection(0b00010000)
 
-# PWM - OUT
 ## PWM = rp.rp_GPIOpSetDirection(0b00001000)
 
 # Set RST and CS pins as outputs
 rp.rp_GPIOnSetDirection(0b00011000)
-# Set PWM pin as output and INT pin as input
-rp.rp_GPIOpSetDirection(0b00001000)
+# Set PWM and INT pins as outputs
+rp.rp_GPIOpSetDirection(0b00011000)
 
 def set_motor_mode(motor_mode):
     # Counter ClockWise direction
@@ -61,8 +59,8 @@ def pwm_sweep(sweep_time, up_or_down):
     print(f"Set state: {pwm_set_state:>08b}")
 
     if up_or_down == "up":
-        # The 0.15 is because the motor starts spinning at 15%
-        for i in range(int(0.15 * num_steps), num_steps + 1):
+        # The 0.4 is because the motor starts spinning at 40%
+        for i in range(int(0.4 * num_steps), num_steps + 1):
             duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
             pulse_us = (duty_cycle * period_us) / 100
 
@@ -78,7 +76,7 @@ def pwm_sweep(sweep_time, up_or_down):
 
     elif up_or_down == "down":
         # The 0.15 is because the motor starts spinning at 15%
-        for i in range(num_steps, int(0.15 * num_steps) - 1, -1):
+        for i in range(num_steps, int(0.4 * num_steps) - 1, -1):
             duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
             pulse_us = (duty_cycle * period_us) / 100
 
@@ -93,7 +91,6 @@ def pwm_sweep(sweep_time, up_or_down):
             time.sleep((period_us - pulse_us) / 1000000)
 
 while True:
-
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
     # Increase motor speed from 15 to 100% for 10 seconds
