@@ -1,28 +1,50 @@
-# In this ReadMe you can find an info how to run Brushless 17 Click demo every 30 seconds and what has been done to finish this project
-## What has been done
-- Added (brushless_17.py)[./Examples/python/brushless_17.py] script to Examples/python folder
-    - With the latest 2.00 RedPitaya OS neither system approach with modifying system gpio files nor C API approach (which nodifies them as well)worked
-    - Python approach with using python macros from RedPitaya didn't work as well
-    - Only writing binary values to the registers using Python API approach worked
-- Added (dc_motor.py)[./Examples/python/dc_motor.py] and (gpio.py)[./Examples/python/gpio.py] scripts to Examples/python folder for testing purposes
-- Added (brushless.service)[./startup_runtime/brushless.service] and (brushless.timer)[./startup_runtime/brushless.timer] files to startup_runtime folder
-    - This increased a portability level of this demo
-- Added (initialize_startup.sh)[./initialize_startup.sh] script for portability purposes as well
+# Brushless 17 Click Demo (Red Pitaya)
 
-## How to run the demo every 30s
-- Power Up your RedPitaya
-- Connect to it via browser
-- Go to Development->Web Console
-    - Connect to RedPitaya using root as a login and password
-- Run `git clone https://github.com/IvanRuzavin/RedPitayaClickShield`
-- Run `chmod +x RedPitayaClickShield/initialize_startup.sh`
-- Run `./RedPitayaClickShield/initialize_startup.sh`
-    - This will reboot your RedPitaya and after it is ON again you will have brushless 17 Click running in the background every 30 seconds
-    - After rebooting RedPitaya now will turn the motor on and off every 30 seconds
-- Useful commands
-    - journalctl -u brushless.service
-        - Will show you if there were any errors during startup call of the demo script
-    - cat /tmp/myscript.log
-        - Will show you if there were any errors during runnict the script itself
-    - systemctl status brushless.service
-        - Will show you the status of service
+This README explains how to run the **Brushless 17 Click** demo every 30 seconds on your Red Pitaya, along with what was done to complete the project.
+
+---
+
+## ✅ What Has Been Done
+
+- ✅ Added [`brushless_17.py`](./Examples/python/brushless_17.py) to the `Examples/python/` folder
+  - On the latest Red Pitaya OS 2.00, the following approaches **did not work**:
+    - Modifying system GPIO files manually
+    - Using the C API (which also touches those GPIOs)
+    - Python macros provided by Red Pitaya
+  - ✅ Only **direct register access using the Python API** worked successfully
+
+- ✅ Added [`dc_motor.py`](./Examples/python/dc_motor.py) and [`gpio.py`](./Examples/python/gpio.py) as test scripts in the same folder
+
+- ✅ Added systemd unit files for portability:
+  - [`brushless.service`](./startup_runtime/brushless.service)
+  - [`brushless.timer`](./startup_runtime/brushless.timer)
+
+- ✅ Added [`initialize_startup.sh`](./initialize_startup.sh) for quick deployment and integration into Red Pitaya’s boot process
+
+---
+
+## ▶️ How to Run the Demo Every 30 Seconds
+
+1. Power up your Red Pitaya
+2. Connect to it via browser
+3. Go to **Development → Web Console**
+4. Log in as:
+   - **Username**: `root`
+   - **Password**: `root`
+5. Run the following commands:
+   ```bash
+   git clone https://github.com/IvanRuzavin/RedPitayaClickShield
+   chmod +x RedPitayaClickShield/initialize_startup.sh
+   ./RedPitayaClickShield/initialize_startup.sh
+
+## 🛠 Useful Commands for Debugging
+
+```bash
+# View logs for the systemd service
+journalctl -u brushless.service
+
+# View output from the script itself
+cat /tmp/myscript.log
+
+# Check the current status of the systemd service
+systemctl status brushless.service
