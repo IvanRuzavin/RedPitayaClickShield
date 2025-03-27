@@ -1,5 +1,5 @@
 #!/bin/bash
-# /root/RedPitayaClickShield/startup_runtime/install_service.sh
+# /root/RedPitayaClickShield/startup_runtime/initialize_startup.sh
 
 SYSTEMD_DIR=/etc/systemd/system
 SRC_DIR=/root/RedPitayaClickShield/startup_runtime
