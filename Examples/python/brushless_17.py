@@ -92,16 +92,14 @@ def pwm_sweep(sweep_time, up_or_down):
 
 while True:
     # Set motor mode to counter-clockwise
-    set_motor_mode("MODE_CCW")
-    rp.rp_GPIOpSetState(0b11111111)
+    set_motor_mode("MODE_CW")
     # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
     # Decrease motor speed from 100 to 40% for 10 seconds
     pwm_sweep(10, "down")
 
     # Set motor mode to clockwise
-    set_motor_mode("MODE_CW")
-    rp.rp_GPIOpSetState(0b11111111)
+    set_motor_mode("MODE_CCW")
     # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
     # Decrease motor speed from 100 to 40% for 10 seconds
