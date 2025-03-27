@@ -47,7 +47,7 @@ def pwm_sweep(sweep_time, up_or_down):
 
     if up_or_down == "up":
         # The 0.4 is because the motor starts spinning at 40%
-        for i in range(int(0.5 * num_steps), num_steps + 1):
+        for i in range(int(0.4 * num_steps), num_steps + 1):
             duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
             pulse_us = (duty_cycle * period_us) / 100
 
@@ -63,7 +63,7 @@ def pwm_sweep(sweep_time, up_or_down):
 
     elif up_or_down == "down":
         # The 0.4 is because the motor starts spinning at 40%
-        for i in range(num_steps, int(0.5 * num_steps) - 1, -1):
+        for i in range(num_steps, int(0.4 * num_steps) - 1, -1):
             duty_cycle = (i * 100) / num_steps  # percent of power, zero to 100
             pulse_us = (duty_cycle * period_us) / 100
 
@@ -80,13 +80,6 @@ def pwm_sweep(sweep_time, up_or_down):
 while True:
     # Set motor mode to counter-clockwise
     set_motor_mode("MODE_CCW")
-    # Increase motor speed from 40 to 100% for 10 seconds
-    pwm_sweep(10, "up")
-    # Decrease motor speed from 100 to 40% for 10 seconds
-    pwm_sweep(10, "down")
-
-    # Set motor mode to clockwise
-    set_motor_mode("MODE_CW")
     # Increase motor speed from 40 to 100% for 10 seconds
     pwm_sweep(10, "up")
     # Decrease motor speed from 100 to 40% for 10 seconds
