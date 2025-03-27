@@ -10,3 +10,5 @@ ln -sf "$SRC_DIR/brushless.timer" "$SYSTEMD_DIR/brushless.timer"
 systemctl daemon-reload
 systemctl enable brushless.timer
 systemctl restart brushless.timer
+
+reboot

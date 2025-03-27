@@ -15,4 +15,5 @@
 - Go to Development->Web Console
     - Connect to RedPitaya using root as a login and password
 - Run `git clone https://github.com/IvanRuzavin/RedPitayaClickShield`
-- Run `chmod -x RedPitayaClickShield/initialize_startup.sh`
+- Run `chmod +x RedPitayaClickShield/initialize_startup.sh`
+- Run `./RedPitayaClickShield/initialize_startup.sh`

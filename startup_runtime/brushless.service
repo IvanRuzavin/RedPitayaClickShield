@@ -3,4 +3,4 @@ Description=Brushless single run
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/taskset 0x2 /usr/bin/python3 /root/RedPitayaClickShield/Examples/python/brushless_once.py
+ExecStart=/usr/bin/taskset 0x2 /usr/bin/python3 /root/RedPitayaClickShield/Examples/python/brushless_17.py
