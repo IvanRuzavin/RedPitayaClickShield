@@ -25,13 +25,36 @@ This README explains how to run the **Brushless 17 Click** demo every 30 seconds
 
 ## ▶️ How to Run the Demo Every 30 Seconds
 
-1. Power up your Red Pitaya
-2. Connect to it via browser
-3. Go to **Development → Web Console**
-4. Log in as:
+1. **Wire the motor and Click board as shown in the image**
+   ![RP_WIRES.jpg](./RP_WIRES.jpg)
+
+   ### Motor Wires
+   - **Yellow** → 1
+   - **Green** → 2
+   - **Blue** → 3
+
+   ### Motor Base Wires
+   - **Blue** → H1
+   - **Green** → H2
+   - **Yellow** → H3
+   - **Red** → +5V
+   - **Black** → GND
+
+   ### External Power Supply
+   - **Ground** → GND
+   - **Output** → +
+
+   ### Analog Pin Note
+   - The **analog pin** should be wired to **3.3V (3v3)** using the **Terminal Click** and a **jumper**,
+     since only the **AIN** pin is routed to the Click Shield.
+     The **AN** pin cannot be set to HIGH directly.
+2. Power up your Red Pitaya
+3. Connect to it via browser
+4. Go to **Development → Web Console**
+5. Log in as:
    - **Username**: `root`
    - **Password**: `root`
-5. Run the following commands:
+6. Run the following commands:
    ```bash
    git clone https://github.com/IvanRuzavin/RedPitayaClickShield
    chmod +x RedPitayaClickShield/initialize_startup.sh
