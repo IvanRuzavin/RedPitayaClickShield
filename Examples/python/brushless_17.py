@@ -33,19 +33,6 @@ def set_motor_mode(motor_mode):
         rp.rp_GPIOnSetState(0b00001000)
         # Set INT to HIGH
         rp.rp_GPIOpSetState(0b00010000)
-    elif motor_mode == "MODE_STOP":
-        # Set CS to LOW and RST to LOW
-        rp.rp_GPIOnSetState(0b00000000)
-        # Set INT to HIGH
-        rp.rp_GPIOpSetState(0b00010000)
-    elif motor_mode == "MODE_STANDBY":
-        # Set CS to LOW and RST to LOW
-        rp.rp_GPIOnSetState(0b00000000)
-        # Set INT to LOW
-        rp.rp_GPIOpSetState(0b00000000)
-    else:
-        # Handle the default case
-        pass
 
 def pwm_sweep(sweep_time, up_or_down):
     period_us = 875
