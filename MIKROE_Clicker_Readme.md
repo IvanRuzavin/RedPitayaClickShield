@@ -18,3 +18,11 @@
 - Run `chmod +x RedPitayaClickShield/initialize_startup.sh`
 - Run `./RedPitayaClickShield/initialize_startup.sh`
     - This will reboot your RedPitaya and after it is ON again you will have brushless 17 Click running in the background every 30 seconds
+    - After rebooting RedPitaya now will turn the motor on and off every 30 seconds
+- Useful commands
+    - journalctl -u brushless.service
+        - Will show you if there were any errors during startup call of the demo script
+    - cat /tmp/myscript.log
+        - Will show you if there were any errors during runnict the script itself
+    - systemctl status brushless.service
+        - Will show you the status of service
