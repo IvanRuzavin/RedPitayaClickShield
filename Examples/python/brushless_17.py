@@ -24,13 +24,13 @@ def set_motor_mode(motor_mode):
     # Counter ClockWise direction
     if motor_mode == "MODE_CCW":
         # Set RST to LOW and CS to HIGH
-        rp.rp_GPIOnSetState(0b00010000)
+        rp.rp_GPIOnSetState(0b00001000)
         # Set INT to HIGH
         rp.rp_GPIOpSetState(0b00010000)
     # ClockWise direction
     elif motor_mode == "MODE_CW":
         # Set RST to HIGH and CS to HIGH
-        rp.rp_GPIOnSetState(0b00010000)
+        rp.rp_GPIOnSetState(0b00011000)
         # Set INT to HIGH
         rp.rp_GPIOpSetState(0b00010000)
     elif motor_mode == "MODE_STOP":
