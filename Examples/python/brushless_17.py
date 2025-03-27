@@ -2,6 +2,8 @@ import time
 from rp_overlay import overlay
 import rp
 
+print(rp.__file__)
+
 ##### IMPORTANT NOTE - AN PIN ON MIKROBUS SHOULD BE SET TO HIGH
 ##### TO RELEASE BRAKES
 
